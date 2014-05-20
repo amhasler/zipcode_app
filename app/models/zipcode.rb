@@ -1,7 +1,7 @@
 class Zipcode < ActiveRecord::Base
 	belongs_to :city
 
-	validates :zip, presence: true, length: {is: 5}
+	#validates :zip, presence: true, length: {is: 5}
 	validates_presence_of :lat
 	validates_presence_of :lon
 	validates_presence_of :city_id

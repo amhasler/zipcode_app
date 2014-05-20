@@ -13,7 +13,7 @@ describe Zipcode do
   it { should respond_to(:zip) }
   it { should respond_to(:city_id) }
   it { should respond_to(:lat) }
-  it { should respond_to(:lon) }
+   it { should respond_to(:lon) }
   its(:city) { should eq city }
 
   it { should be_valid }
