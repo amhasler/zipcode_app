@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ZipcodeApp::Application.config.secret_key_base = '17bc7063a471175b14203acb7bb672b33d8a53daaada823b7e1f6d0cfc59b04cc98b35c5caea874091091ce461d283aa7430d52aff168df3b61b49dd4d1fd763'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+ZipcodeApp::Application.config.secret_key_base = secure_token
